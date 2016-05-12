@@ -162,12 +162,13 @@ Block task
                     // Add new row to test output table.
                     TestOutput output;
                     output.trialnum = test.cycle + 1;
+                    output.block = meta_block.cycle + 1;
                     output.id = item.id;
                     output.type = item.type;
-                    //output.word = item.word;
+                    output.category = item.category;
+                    output.set = item.set;
                     output.value = test_page.response.value;
                     output.rt = test_page.response.rt;
-                    output.correct = test_page.response.correct;
                     test_output_append(output);
                 }
             }

@@ -203,14 +203,12 @@ Page test_page
         // Response data.
         int     value;          // response value: 0=no, 1=yes, -1=timeout
         int     rt;             // response time [ms]
-        int     correct;        // correct response: 0=no, 1=yes, -1=n.a.
 
 
         void clear()
         {
             value = -1;
             rt = -9999;
-            correct = -1;
         }
 
 
@@ -224,7 +222,6 @@ Page test_page
             {
                 value = val;
                 rt = int(reaction_time(0));
-                correct = 999;
 
                 ignore_remaining_hits();
 
@@ -239,12 +236,7 @@ Page test_page
 
         on_event:finish()
         {
-            real correctness = 0;
-            if (num_valid_hits > 0) correctness = correct ? 1 : -1;
-
-            if (!test_page_overlay.start_feedback(this, correctness, 
-                    FEEDBACK_DURATION)) 
-                done(CONTINUE);
+            done(CONTINUE);
         }
 
 

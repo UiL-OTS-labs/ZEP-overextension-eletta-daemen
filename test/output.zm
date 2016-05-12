@@ -18,15 +18,17 @@ HISTORY:
 // Test output table record.
 record TestOutput
 {
+    int         block;
+
     int         trialnum;       // trial number
 
     int         id;             // item id
     ItemType    type;           // item type
-    string      word;           // stimulus word
+    ItemCategory category;           // stimulus word
 
+    int         set;
     int         value;          // response value: 0=no, 1=yes, -1=timeout
     int         rt;             // response time [ms]
-    int         correct;        // correct response: 0=no, 1=yes, -1=n.a.
 }
 
 
