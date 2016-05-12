@@ -1,0 +1,212 @@
+/******************************************************************************\
+FILE:           task.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Implementation of task: Visual Lexical Decision
+See readme.txt for more information.
+
+
+Global structure of this experiment phase:
+
+  - instructions
+
+  - practice part
+      trial
+
+  - pause
+
+  - test part
+      trial
+
+
+HISTORY:
+2011-10-25 TV   Created.
+2016-05-12 CvR   Adjusted.
+\******************************************************************************/
+
+import defs;
+import stimuli;
+import shuffle;
+import output;
+import test_page;
+
+
+Block task
+{
+    on_event:entry()
+    {
+        control.button_box.open();
+
+        // If necessary set parallel port line D0 to power button box device.
+//        control.button_box.output(0x02);
+    }
+
+
+    Part instructions
+    {
+        on_event:entry()
+        {
+//            pause_page.set_text_size(1000, 600);
+            pause_page.set_text(FIRST_INSTRUCTION_TEXT, true);
+
+            pause_page.action(this);
+            control.button_box.enable_all_buttons(CONTINUE);
+        }
+    }
+
+
+    Block practice
+    {
+        TestItem        item;   // current item
+
+
+        on_event:entry()
+        {
+            num_cycles = prac_items.size;
+
+            // Prepare test page: progress bar, feedback and prompt enabled.
+            test_page.setup(num_cycles, false, true);
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = prac_items[practice.cycle];
+
+                test_page.action(this, item, reference_time, practice.cycle);
+            }
+        }
+    }
+
+
+    Part
+    {
+        on_event:entry()
+        {
+            blank_page.action_auto(this, 500ms);
+        }
+    }
+
+
+    Part pause
+    {
+        on_event:entry()
+        {
+            pause_page.set_text(AFTER_TASK_ONE_PRACTICE_TEXT, true);
+
+            pause_page.action(this);
+            control.button_box.enable_all_buttons(CONTINUE);
+        }
+    }
+
+    Block meta_block
+    {
+        TestItem[] current_item_list;
+
+        on_event:entry()
+        {
+            num_cycles = list_order[experiment.selected_version][experiment.selected_list].size;
+        }
+
+        Block test
+        {
+            TestItem        item;   // current item
+
+
+            on_event:entry()
+            {
+                // get which list we should play from the list order 
+                int list_index = list_order[experiment.selected_version][experiment.selected_list][meta_block.cycle];
+                meta_block.current_item_list = test_items_lists[list_index];
+
+                num_cycles = meta_block.current_item_list.size;
+
+                // Prepare test page: progress bar enabled, feedback and prompt 
+                // disabled.
+                test_page.setup(num_cycles, false, false);
+            }
+
+
+            on_event:exit()
+            {
+                test_page.cleanup();
+
+                // Save test output table as CSV file.
+                test_output_save();
+            }
+
+
+            Trial trial
+            {
+                on_event:entry()
+                {
+                    item = meta_block.current_item_list[test.cycle];
+
+                    test_page.action(this, item, reference_time, test.cycle);
+                }
+
+
+                on_event:exit()
+                {
+                    // Add new row to test output table.
+                    TestOutput output;
+                    output.trialnum = test.cycle + 1;
+                    output.id = item.id;
+                    output.type = item.type;
+                    //output.word = item.word;
+                    output.value = test_page.response.value;
+                    output.rt = test_page.response.rt;
+                    output.correct = test_page.response.correct;
+                    test_output_append(output);
+                }
+            }
+        }
+
+
+        Part
+        {
+            on_event:entry()
+            {
+                blank_page.action_auto(this, 500ms);
+            }
+        }
+
+        Part
+        {
+            on_event:entry()
+            {
+                if(meta_block.cycle != meta_block.num_cycles-1)
+                {
+                    pause_page.set_text(BLOCK_PAUSE_TEXT, true);
+                    pause_page.action(this);
+
+                    control.button_box.enable_all_buttons(CONTINUE);
+                } else
+                {
+                    signal(this, CONTINUE);
+                }
+            }
+        }
+    }
+    
+
+}
+
+
+void action(Part caller)
+{
+    // Activate the task. When the task is done, the registered caller
+    // (c.q. the main experiment object) will automatically be signalled.
+    task.enter(caller);
+}

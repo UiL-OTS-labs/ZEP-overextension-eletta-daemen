@@ -1,0 +1,55 @@
+/******************************************************************************\
+FILE:           texts_nl.zm
+AUTHOR:         Chris van RUn <C.P.A.vanrun@uu.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Defines additional texts on for introductions, instructions etc.
+
+2016-05-12 CvR   Created.
+
+\******************************************************************************/
+
+import std_texts_nl;
+
+const string FIRST_INSTRUCTION_TEXT = 
+                "<b>Dear participant,</b>\n"
+                "\n"
+                "Thank you for participating in this experiment.\n"
+                "\n"
+                "You are now going to see words on the screen, one after the "
+                "other. Your task is to indicate for each word as quickly as "
+                "possible whether you think the word is <i>a real word or "
+                "not</i>. Try to make no mistakes.\n"
+                "\n"
+
+                "To respond, hit the left button on the button-box for "
+                "<i>No</i> and the right button for <i>Yes</i>.\n"
+
+//                "To respond, hit the left shift key for <i>No</i> and the "
+//                "right shift key for <i>Yes</i>.\n"
+
+//                "To respond, hit the left button on the button-box for "
+//                "<i>No</i> and the right button for <i>Yes</i>. "
+//                "Alternatively you can use the left or right shift keys.\n"
+
+                "\n"
+                "First we will do a short practice.\n"
+                "\n"
+//                "<i>Hit Enter when ready to start.</i>", 
+                "<i>Hit any button on the button-box when ready to start.</i>";
+
+const string AFTER_TASK_ONE_PRACTICE_TEXT =
+                "End of the practice part.\n"
+                "\n"
+                "If you have any questions at this moment please ask the "
+                "experimenter now.\n"
+                "\n"
+//                "<i>Hit Enter when ready to proceed.</i>", 
+                "<i>Hit any button on the button-box when ready to "
+                "proceed.</i>";
+
+const string BLOCK_PAUSE_TEXT = "Nu even tijd voor pauze";
+
+const string OVERLAY_TEXT_PRACTICE = "Is dit correct?";

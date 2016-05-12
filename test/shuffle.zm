@@ -1,0 +1,180 @@
+/******************************************************************************\
+FILE:           shuffle.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Item table shuffling functions.
+
+
+HISTORY:
+2011-10-25 TV   Created.
+2016-05-10 CvR	Adjusted.
+
+\******************************************************************************/
+
+// Shuffles test_items table (no restrictions on item order).
+int shuffle_test_items()
+{
+	if (check_item_list_format() != OK) return ERROR;
+
+	int[..] order;
+	order.size = test_items_lists[0].size;
+	incremental_fill_array(order);
+
+	if (shuffle_order(order) != OK) return ERROR;
+
+	if(set_in_specific_order(test_items_lists,order) != OK) return ERROR;
+
+
+    return OK;
+}
+
+int shuffle_order(int[] order)
+{
+	int nitems = order.size;
+
+	int nattempts;
+    bool again = true;
+    while (again && ++nattempts < 100)
+    {
+        // First shuffle the entire item table.
+        again = false;
+        order.shuffle(0, -1);
+ 
+        // Walk over the table and check for items conflicting with the
+        // criterion. If an item conflicts, then swap it randomly with one
+        // of the items not yet looked at.
+        int n = 3;
+        while (n < nitems)
+        {
+            int nitemswaps;
+            while (
+	            	(
+		                test_items_lists[0][order[n]].category == test_items_lists[0][order[n-1]].category &&
+		                test_items_lists[0][order[n]].category == test_items_lists[0][order[n-2]].category &&
+		                test_items_lists[0][order[n]].category == test_items_lists[0][order[n-3]].category 
+	                ) 
+	                ||
+	                (
+		                test_items_lists[0][order[n]].set == test_items_lists[0][order[n-1]].set ||
+		                test_items_lists[0][order[n-1]].set == test_items_lists[0][order[n-2]].set ||
+		                test_items_lists[0][order[n-2]].set == test_items_lists[0][order[n-3]].set
+	                )
+                )
+            {
+                if (n+1 == nitems || ++nitemswaps == 10)
+                {
+                    again = true;
+                    break;
+                }
+                order.swap(n, random(n, nitems - n));
+            }
+            if (again) break;
+            n++;
+        }
+    }
+ 
+    if (again)
+        println("Unable to shuffle test_items according to criteria. "
+            "Check table and/or criteria.");
+ 
+    return again ? ERROR : OK;
+}
+
+int set_in_specific_order(TestItem[][] test_item_lists, int[] order)
+{
+	if(order.size != test_item_lists[0].size)
+	{
+		print("Selected order is not same length as array to order!");
+		return ERROR;
+	}
+
+	int target_index;
+	while(target_index < test_item_lists.size)
+	{
+		int order_index;
+		TestItem[..] temp_test_items; 
+		temp_test_items.size = order.size;
+
+		while(order_index < order.size)
+		{
+			temp_test_items[order_index] = test_item_lists[target_index][order[order_index]];
+			order_index++;
+		}
+
+		deep_copy_array(temp_test_items, test_item_lists[target_index]);
+
+		target_index++;
+	}
+
+	return OK;
+}
+
+int deep_copy_array(TestItem[] source, TestItem[] target)
+{
+	target.size = source.size;
+	int index;
+
+	while(index<target.size)
+	{
+		target[index] = source[index];
+		index++;
+	}
+
+	return OK;
+}
+
+void incremental_fill_array(int[] array)
+{
+	int index;
+	while(index < array.size)
+	{
+		array[index] = index;
+		index++;
+	}
+}
+
+int check_item_list_format()
+{
+	int i;
+	int result = OK;
+	while(i<test_items_lists.size)
+	{
+		if(test_items_lists[i].size != test_items_lists[0].size)
+		{
+			println("Warning: item lists do not seem to be the same length!");
+			result = ERROR;
+		}
+		i++;
+	}
+
+	return result;
+}
+
+void dump_test_items()
+{
+	println("Dumping test items here for inspection:");
+    int nl;
+    int nlists = test_items_lists.size;
+    while (nl < nlists)
+    {
+    	int n;
+    	int nitems = test_items_lists[nl].size;
+    	println("=========== LIST: " + nl + " ===========");
+    	while (n < nitems)
+    	{
+    		
+	        println(
+	            string(n) + "\t" +
+	            string(test_items_lists[nl][n].id) + "\t" +
+	            string(test_items_lists[nl][n].type) + "\t" +
+	            string(test_items_lists[nl][n].category) + "\t" +
+	            string(test_items_lists[nl][n].set) + "\t" +
+	            string(test_items_lists[nl][n].question));
+	        n++;
+	    }
+        nl++;
+    }
+}
