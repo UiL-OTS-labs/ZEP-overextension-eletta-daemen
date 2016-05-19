@@ -1,7 +1,7 @@
 /******************************************************************************\
 FILE:           stimuli.zm
 AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
-ADAPTED BY:     -
+ADAPTED BY:     Chris van Run, Eletta Daemen
 
 DESCRIPTION:
 
@@ -12,6 +12,7 @@ the item table(s) i.e. stimulus information.
 HISTORY:
 2011-10-25 TV   Created.
 2016-05-12 CvR   Adjusted.
+2016-05-18 ED	Adjusted.
 
 \******************************************************************************/
 
@@ -55,7 +56,7 @@ TestItem[..] prac_items =
 {
     {93, FILLER, B, 0, "Is een aardappel voedsel?" },
     {94, FILLER, A, 0, "Is een staafmixer een huishoudelijk apparaat?" },
-    {95, FILLER, A, 0, "Is een kettingzaag een voedsel?" },
+    {95, FILLER, A, 0, "Is een kettingzaag een wapen?" },
     {96, FILLER, CONJBA, 0, "Is een aardappel voedsel dat ook een gereedschap is?" },
     {97, FILLER, CONJAB, 0, "Is een staafmixer een huishoudelijk apparaat dat ook een meubel is?" },
     {98, FILLER, CONJAB, 0, "Is een kettingzaag een gereedschap dat ook een wapen is?" },
@@ -154,7 +155,7 @@ TestItem[..][..] test_items_lists =
         {74, FILLER, B, 3, "Is een bacterie een dier?" },
         {75, FILLER, A, 4, "Is een worm een plant?" },
         {76, FILLER, B, 4, "Is bloed voedsel?" },
-        {77, FILLER, A, 5, "Is een piano een huidoudelijk apparaat?" },
+        {77, FILLER, A, 5, "Is een piano een huishoudelijk apparaat?" },
         {78, FILLER, B, 5, "Is een aanrecht een meubel?" },
         {79, FILLER, A, 6, "Is een fles een gereedschap?" },
         {80, FILLER, B, 6, "Is een nagelschaartje een wapen?" },
@@ -243,13 +244,13 @@ TestItem[..][..] test_items_lists =
         {69, FILLER, B, 1, "Is kamille voedsel?" },
         {70, FILLER, A, 1, "Is hennep een dier?" },
         {71, FILLER, B, 2, "Is een haai voedsel?" },
-        {72, FILLER, A, 2, "Is een krokodill een huisdier?" },
+        {72, FILLER, A, 2, "Is een krokodil een huisdier?" },
         {73, FILLER, B, 3, "Is een mens een dier?" },
         {74, FILLER, A, 3, "Is een bacterie voedsel?" },
         {75, FILLER, B, 4, "Is een worm voedsel?" },
         {76, FILLER, A, 4, "Is bloed een plant?" },
         {77, FILLER, B, 5, "Is een piano een meubel?" },
-        {78, FILLER, A, 5, "Is een aanrecht een huidhoudelijk apparaat?" },
+        {78, FILLER, A, 5, "Is een aanrecht een huishoudelijk apparaat?" },
         {79, FILLER, B, 6, "Is een fles een wapen?" },
         {80, FILLER, A, 6, "Is een nagelschaartje een gereedschap?" },
         {81, FILLER, B, 7, "Is lijm een gereedschap?" },
@@ -289,7 +290,7 @@ TestItem[..][..] test_items_lists =
         {21, TARGET, CONJBA, 4, "Is bamboe voedsel dat ook een plant is?" },
         {22, TARGET, CONJBA, 4, "Is een cactus voedsel dat ook een plant is?" },
         {23, TARGET, CONJBA, 4, "Is een tulp voedsel dat ook een plant is?" },
-        {24, TARGET, CONJAB, 5, "Is een hifi een huishoudelijk apparaat dat ook een meubel is?" },
+        {24, TARGET, CONJAB, 5, "Is een stereo-installatie een huishoudelijk apparaat dat ook een meubel is?" },
         {25, TARGET, CONJAB, 5, "Is een gasfornuis een huishoudelijk apparaat dat ook een meubel is?" },
         {26, TARGET, CONJBA, 5, "Is een wasmachine een meubel dat ook een huishoudelijk apparaat is?" },
         {27, TARGET, CONJBA, 5, "Is een koelkast een meubel dat ook een huishoudelijk apparaat is?" },
@@ -342,7 +343,7 @@ TestItem[..][..] test_items_lists =
         {74, FILLER, CONJBA, 3, "Is een bacterie een dier dat ook voedsel is?" },
         {75, FILLER, CONJAB, 4, "Is een worm een plant die ook voedsel is?" },
         {76, FILLER, CONJBA, 4, "Is bloed voedsel dat ook een plant is?" },
-        {77, FILLER, CONJAB, 5, "Is een piano een huidoudelijk apparaat dat ook een meubel is?" },
+        {77, FILLER, CONJAB, 5, "Is een piano een huishoudelijk apparaat dat ook een meubel is?" },
         {78, FILLER, CONJBA, 5, "Is een aanrecht een meubel dat ook een huishoudelijk apparaat is?" },
         {79, FILLER, CONJAB, 6, "Is een fles een gereedschap dat ook een wapen is?" },
         {80, FILLER, CONJBA, 6, "Is een nagelschaartje een wapen dat ook een gereedschap is?" },
@@ -350,10 +351,10 @@ TestItem[..][..] test_items_lists =
         {82, FILLER, CONJBA, 7, "Is een tuinslang een gereedschap dat ook een wapen is?" },
         {83, FILLER, CONJAB, 8, "Is een slang een vogel die ook een huisdier is?" },
         {84, FILLER, CONJBA, 8, "Is een rat een huisdier dat ook een vogel is?" },
-        {85, FILLER, CONJAB, 9, "Zijn zwemvliezen kleding dat ook schoeisel is?" },
-        {86, FILLER, CONJBA, 9, "Zijn rolschaatsen schoeisel dat ook kleding is?" },
+        {85, FILLER, CONJAB, 9, "Is een zwemvlies kleding dat ook schoeisel is?" },
+        {86, FILLER, CONJBA, 9, "Is een rolschaats schoeisel dat ook kleding is?" },
         {87, FILLER, CONJAB, 10, "Is een zaag keukengerei dat ook een instrument is?" },
-        {88, FILLER, CONJBA, 10, "Is een versterker een instrument ook keukengerei is?" },
+        {88, FILLER, CONJBA, 10, "Is een versterker een instrument dat ook keukengerei is?" },
         {89, FILLER, CONJAB, 11, "Is kwark een vloeistof die ook een drank is?" },
         {90, FILLER, CONJBA, 11, "Is slagroom een drank die ook een vloeistof is?" },
         {91, FILLER, CONJAB, 12, "Is rooibos een orgaan dat ook voedsel is?" },
@@ -383,7 +384,7 @@ TestItem[..][..] test_items_lists =
         {21, TARGET, CONJAB, 4, "Is bamboe een plant die ook voedsel is?" },
         {22, TARGET, CONJAB, 4, "Is een cactus een plant die ook voedsel is?" },
         {23, TARGET, CONJAB, 4, "Is een tulp een plant die ook voedsel is?" },
-        {24, TARGET, CONJBA, 5, "Is een hifi een meubel dat ook een huishoudelijk apparaat is?" },
+        {24, TARGET, CONJBA, 5, "Is een stereo-installatie een meubel dat ook een huishoudelijk apparaat is?" },
         {25, TARGET, CONJBA, 5, "Is een gasfornuis een meubel dat ook een huishoudelijk apparaat is?" },
         {26, TARGET, CONJAB, 5, "Is een wasmachine een huishoudelijk apparaat dat ook een meubel is?" },
         {27, TARGET, CONJAB, 5, "Is een koelkast een huishoudelijk apparaat dat ook een meubel is?" },
@@ -431,21 +432,21 @@ TestItem[..][..] test_items_lists =
         {69, FILLER, CONJBA, 1, "Is kamille voedsel dat ook een dier is?" },
         {70, FILLER, CONJAB, 1, "Is hennep een dier dat ook voedsel is?" },
         {71, FILLER, CONJBA, 2, "Is een haai voedsel dat ook een huisdier is?" },
-        {72, FILLER, CONJAB, 2, "Is een krokodill een huisdier dat ook voedsel is?" },
+        {72, FILLER, CONJAB, 2, "Is een krokodil een huisdier dat ook voedsel is?" },
         {73, FILLER, CONJBA, 3, "Is een mens een dier dat ook voedsel is?" },
         {74, FILLER, CONJAB, 3, "Is een bacterie voedsel dat ook een dier is?" },
         {75, FILLER, CONJBA, 4, "Is een worm voedsel dat ook een plant is?" },
         {76, FILLER, CONJAB, 4, "Is bloed een plant die ook voedsel is?" },
         {77, FILLER, CONJBA, 5, "Is een piano een meubel dat ook een huishoudelijk apparaat is?" },
-        {78, FILLER, CONJAB, 5, "Is een aanrecht een huidhoudelijk apparaat dat ook een meubel is?" },
+        {78, FILLER, CONJAB, 5, "Is een aanrecht een huishoudelijk apparaat dat ook een meubel is?" },
         {79, FILLER, CONJBA, 6, "Is een fles een wapen dat ook een gereedschap is?" },
         {80, FILLER, CONJAB, 6, "Is een nagelschaartje een gereedschap dat ook een wapen is?" },
         {81, FILLER, CONJBA, 7, "Is lijm een gereedschap dat ook een wapen is?" },
         {82, FILLER, CONJAB, 7, "Is een tuinslang een wapen dat ook een gereedschap is?" },
         {83, FILLER, CONJBA, 8, "Is een slang een huisdier dat ook een vogel is?" },
         {84, FILLER, CONJAB, 8, "Is een rat een vogel die ook een huisdier is?" },
-        {85, FILLER, CONJBA, 9, "Zijn zwemvliezen schoeisel dat ook kleding is?" },
-        {86, FILLER, CONJAB, 9, "Zijn rolschaatsen kleding dat ook schoeisel is?" },
+        {85, FILLER, CONJBA, 9, "Is een zwemvlies schoeisel dat ook kleding is?" },
+        {86, FILLER, CONJAB, 9, "Is een rolschaats kleding dat ook schoeisel is?" },
         {87, FILLER, CONJBA, 10, "Is een zaag een instrument dat ook keukengerei is?" },
         {88, FILLER, CONJAB, 10, "Is een versterker keukengerei dat ook een instrument is?" },
         {89, FILLER, CONJBA, 11, "Is kwark een drank die ook een vloeistof is?" },

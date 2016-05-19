@@ -1,0 +1,48 @@
+/******************************************************************************\
+FILE:           texts_nl.zm
+AUTHOR:         Chris van RUn <C.P.A.vanrun@uu.nl>
+ADAPTED BY:     Eletta Daemen
+
+DESCRIPTION:
+
+Defines additional texts on for introductions, instructions etc.
+
+2016-05-12 CvR   Created.
+2016-05-18 ED	Adjusted.
+
+\******************************************************************************/
+
+import std_texts_nl;
+
+const string FIRST_INSTRUCTION_TEXT = 
+                "Beste deelnemer,\n"
+                "\n"
+                "Fijn dat je mee wilt doen aan dit experiment.\n"
+                "\n"
+                "In dit experiment krijg je steeds vragen te zien. "
+                "Het is jouw taak om antwoord te geven op die vragen. "
+				"Het is belangrijk dat je antwoordt vanuit je <b>eerste ingeving</b>. Denk dus niet te "
+                "lang na, maar probeer vanuit je eerste gevoel te antwoorden. "
+				"Er zijn <b>geen</b> goede en foute antwoorden. We zijn op zoek naar <b>jouw mening</b>.\n"
+                "\n"
+
+                "Om te antwoorden, kun je op de gemarkeerde knoppen op het toetsenbord drukken. Druk op de <b>linker</b> "
+				"knop als je antwoord op de vraag NEE is. Druk op de <b>rechter</b> knop als je antwoord op de vraag JA is.\n"
+                "\n"
+				
+				"Het experiment bestaat uit drie delen. Daartussen zit telkens een korte pauze. In totaal duurt het ongeveer 30 minuten.\n"
+				"\n"
+                "Voordat het experiment begint, volgen er nu een aantal oefenvragen.\n"
+                "\n"
+                "<i>Druk op enter als je klaar bent om te beginnen.</i>";
+
+const string AFTER_TASK_ONE_PRACTICE_TEXT =
+                "Einde van het oefengedeelte.\n"
+                "\n"
+                "Als je nog vragen hebt kun je die nu aan de proefleider stellen.\n"
+                "\n"
+                "<i>Druk op enter om door te gaan met het experiment.</i>";
+
+const string BLOCK_PAUSE_TEXT = "Je kunt nu even pauze nemen. Druk op enter als je klaar bent om verder te gaan.";
+
+const string OVERLAY_TEXT_PRACTICE = "OEFENOPGAVE";
